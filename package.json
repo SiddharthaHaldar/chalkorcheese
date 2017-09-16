@@ -1,0 +1,24 @@
+{
+  "name": "chalk_or_cheese",
+  "version": "1.0.0",
+  "description": "Which one's better chalk or cheese? Well let's find out.. ;)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sid",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.10",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.12.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.2.1"
+  }
+}
