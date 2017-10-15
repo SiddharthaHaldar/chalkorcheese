@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+</head>
+<body>
+		<%var u="/dashboard/"+userId%>
+		<div class="container">
+  	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-warning">
+  <a class="navbar-brand" href="#" style="font-family: 'Lobster', cursive; font-size: 25px;">CHALKoCHEESE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=u%>">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/createTopic">Create Topic</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/logout">Logout</a>
+      </li>
+    </ul>	
+</div>
+</nav>
+<br><br>
+<div class="jumbotron">
+	
+	<h1>Topic</h1>
+	<hr class="my-4">
+	<form action="/createTopic" method="POST">
+	<!--Topic name:
+	<input type="text" name="topicName" placeholder="Enter the name of the topic" required>
+	<br><br>-->
+	<div class="form-group">
+    <label for="topicName">Name:</label>
+    <input type="text" name="topicName" class="form-control" id="topicName" placeholder="Enter the name of the topic" required>
+  	</div>
+	<!--Topic Details:<br>
+	<textarea name="topicDetails" placeholder="Say something about the topic(OPTIONAL)" rows="5" cols="50" ></textarea>-->
+	<div class="form-group">
+    <label for="topicDetails">Details:</label>
+    <textarea name="topicDetails" class="form-control" id="topicDetails" rows="3" placeholder="Say something about the topic(OPTIONAL)"></textarea>
+  	</div>
+	<br>
+	
+	<h2>Chalk:</h2>
+	<hr class="my-4">
+	<div class="form-group">
+    <label for="c1name">Name:</label>
+    <input type="text" name="c1name" class="form-control" id="c1name" required>
+  	</div>
+	<!--Name:
+	<input type="text" name="c1name" required>-->
+	
+	<div class="form-group">
+    <label for="c1details">Details:</label>
+    <textarea name="c1details" class="form-control" id="c1details" rows="3" placeholder="Say something about this contender(OPTIONAL)"></textarea>
+  	</div>
+
+	<!--Details:<br>
+	<textarea name="c1details" placeholder="Say something about this contender(OPTIONAL)" rows="5" cols="50"></textarea>-->
+	
+	<div class="form-group">
+    <label for="c1links">Links:</label>
+    <textarea name="c1links" class="form-control" id="c1links" rows="3" placeholder="Separate the links by commas(OPTIONAL)"></textarea>
+  	</div>
+
+	<!--Links:<br>
+	<textarea name="c1links" placeholder="Separate the links by commas(OPTIONAL)" rows="5" cols="50"></textarea>-->
+	<br>
+	<h2>Cheese:</h2>
+	<hr class="my-4">
+	<div class="form-group">
+    <label for="c2name">Name:</label>
+    <input type="text" name="c2name" class="form-control" id="c2name" required>
+  	</div>
+	
+	<div class="form-group">
+    <label for="c2details">Details:</label>
+    <textarea name="c2details" class="form-control" id="c2details" rows="3" placeholder="Say something about this contender(OPTIONAL)"></textarea>
+  	</div>
+
+	<div class="form-group">
+    <label for="c2links">Links:</label>
+    <textarea name="c2links" class="form-control" id="c2links" rows="3" placeholder="Separate the links by commas(OPTIONAL)"></textarea>
+  	</div>
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+</body>
+</html>

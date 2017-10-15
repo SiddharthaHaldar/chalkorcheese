@@ -1,0 +1,22 @@
+#heart-path {
+	stroke-width: 5;
+    stroke-dasharray: 270;
+    stroke-dashoffset: 270;
+    animation: heart 2.5s /*ease-in-out*/cubic-bezier(0.97, 0.96, 1, -0.19) forwards;
+    animation-iteration-count: 4;
+    -webkit-animation: heart 2.5s ease-in-out forwards;
+}
+
+
+ /*========================
+ *      KEYFRAMES
+ */
+
+ @keyframes heart {
+    100%{stroke-dashoffset:0;}
+ }
+
+ 
+@-webkit-keyframes heart {
+  100%{stroke-dashoffset:0;}  
+}

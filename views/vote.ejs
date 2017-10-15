@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vote</title>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="../style.css">-->
+    <style type="text/css">
+        .myWrap{
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+
+          -ms-word-break: break-all;
+          /* This is the dangerous one in WebKit, as it breaks things wherever */
+          word-break: break-all;
+          /* Instead use this non-standard one: */
+          word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+	<%var t=topic[0]
+  console.log("from the front end : "+t.topicName);
+  console.log(t.contender1)
+  console.log(t.contender2)
+  var u="/dashboard/"+user
+  %>
+ 
+
+<div class="container">
+  
+  
+  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-warning">
+      
+  <a class="navbar-brand" href="#" style="font-family: 'Lobster', cursive; font-size: 25px;">CHALKoCHEESE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=u%>">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/createTopic">Create Topic</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/logout">Logout</a>
+      </li>
+    </ul> 
+
+</div>
+</nav>
+
+<br><br>
+
+<div class="jumbotron">
+
+<div id="exampleAccordionA" data-children=".item">
+  <div class="item">
+    <a data-toggle="collapse" data-parent="#exampleAccordionA" href="#exampleAccordion1" aria-expanded="true" aria-controls="exampleAccordion1" class="display-4 text-danger">
+      <%=t.topicName%>
+    </a>
+    <div id="exampleAccordion1" class="collapse" role="tabpanel">
+      <div class="myWrap">
+      <p class="mb-3">
+        <%=t.topicDetails%>
+      </p>
+      </div>
+    </div>
+  </div>
+  </div>
+<hr class="my-4">
+
+<form action="/vote"  method="POST" id="myForm">
+
+
+
+<div class ="row">
+
+<div class="col-sm-6" >
+      <div style="padding: 0.25rem;
+            border: 1px solid rgba(239, 239, 239, 0.15);;
+            border-left-width: .25rem;
+            border-radius: .25rem;
+            border-left-color: #f0ad4e;">
+      <div id="exampleAccordionB" data-children=".item">
+      <div class="item">
+      <a data-toggle="collapse" data-parent="#exampleAccordionB" href="#exampleAccordion2" aria-expanded="true" aria-controls="exampleAccordion1" class="display-4 text-danger">
+      <%=t.contender1.name%>
+    </a>
+    <div id="exampleAccordion2" class="collapse" role="tabpanel">
+      <div class="myWrap">
+      <p class="mb-3"><%=t.contender1.details%></p>
+      </div>
+      <%for(var x=0;x<t.contender1.links.length;x++){%>
+      <li>
+      <div class="myWrap">
+      <a href=<%=t.contender1.links[x]%> ><%=t.contender1.links[x]%><a>
+      </div>
+      </li>
+      <%}%>
+     
+    </div>
+  </div>
+</div>
+
+</div>
+<br>
+    <button type="submit" value=<%=t._id%>|vc1 class="btn btn-outline-success pull-right" name="vote" style="float: right">
+    Vote</button>
+    <br>
+    <hr class="my-4">
+</div>    
+
+
+
+<div class="col-sm-6" >
+<div style="padding: 0.25rem;
+            border: 1px solid rgba(239, 239, 239, 0.15);;
+            border-left-width: .25rem;
+            border-radius: .25rem;
+            border-left-color: #f0ad4e;">
+
+<div id="exampleAccordionC" data-children=".item">
+  <div class="item">
+      <a data-toggle="collapse" data-parent="#exampleAccordionC" href="#exampleAccordion3" aria-expanded="true" aria-controls="exampleAccordion1" class="display-4 text-danger">
+      <%=t.contender2.name%>
+    </a>
+
+    <div id="exampleAccordion3" class="collapse" role="tabpanel">
+      <div class="myWrap">
+      <p class="mb-3"><%=t.contender2.details%></p>
+      </div>
+      <%for(var x=0;x<t.contender2.links.length;x++){%>
+      <li>
+      <div class="myWrap">
+      <a href=<%=t.contender2.links[x]%>><%=t.contender2.links[x]%><a>
+      </div>
+      </li>
+      <%}%>
+    </div>
+  </div>
+</div>
+</div>
+<br>
+  <button type="submit" value=<%=t._id%>|vc2 class="btn btn-outline-success" name="vote" style="float: right">Vote</button>
+  <br>
+  <hr class="my-4">
+</form> 
+
+
+</div>
+</div>
+
+
+</body>
+</html>
+
+
+

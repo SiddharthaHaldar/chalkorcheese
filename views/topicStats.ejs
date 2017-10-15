@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="../style.css">-->
+<%
+	var hp1,hp2;
+	if(topic.vc1===0&&topic.vc2===0)
+	{
+		hp1=0;
+		hp2=0;
+	}
+	else
+	{
+		hp1=((topic.vc1/(topic.vc1+topic.vc2))*270);
+		hp2=((topic.vc2/(topic.vc1+topic.vc2))*270)
+	}
+%>
+
+<style type="text/css">
+  .myWrap{
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+
+          -ms-word-break: break-all;
+          /* This is the dangerous one in WebKit, as it breaks things wherever */
+          word-break: break-all;
+          /* Instead use this non-standard one: */
+          word-break: break-word;
+        }
+
+    .heart-path {
+	stroke-width: 5;
+    stroke-dasharray: 270;
+    stroke-dashoffset: <%=270-hp1%>;
+    /*animation: heart 2.5s cubic-bezier(1, 1.18, 0.55,-0.62) forwards;
+    animation-iteration-count: 4;
+    -webkit-animation: heart 2.5s ease-in-out forwards;*/
+}
+
+.heart-path-2 {
+	stroke-width: 5;
+    stroke-dasharray: 270;
+    stroke-dashoffset: <%=270-hp2%>;
+    /*animation: heart2 2.5s cubic-bezier(1, 1.18, 0.55,-0.62) forwards;
+    animation-iteration-count: 4;
+    -webkit-animation: heart2 2.5s ease-in-out forwards;*/
+}
+
+ /*========================
+ *      KEYFRAMES
+ */
+
+ @keyframes heart {
+    100%{stroke-dashoffset:<%=(topic.vc2/(topic.vc1+topic.vc2))*270%>;}
+ }
+
+@keyframes heart2 {
+    100%{stroke-dashoffset:<%=(topic.vc1/(topic.vc1+topic.vc2))*270%>;}
+ }
+
+ /* Code for old Chrome, Safari and Opera */
+@-webkit-keyframes heart {
+  100%{stroke-dashoffset:0;}  
+}
+</style>
+</head>
+<body>
+<input type="hidden" id="hp1" value=<%=270-hp1%>>
+<input type="hidden" id="hp2" value=<%=270-hp2%>>
+<%var u="/dashboard/"+topic.uID%>
+		<div class="container">
+
+  	<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <a class="navbar-brand" href="#" style="font-family: 'Lobster', cursive; font-size: 25px;">CHALKoCHEESE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=u%>">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/createTopic">Create Topic</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/logout">Logout</a>
+      </li>
+    </ul>	
+</div>
+</nav>
+<!--<br><br>-->
+<div class="jumbotron">
+<h1 class="display-5">Topic Stats</h1>
+<hr class="my-4">
+<input type="hidden" id="topic" value=<%=topic._id%>>
+<h1 class="display-5"><%=topic.topicName%></h1>
+
+
+<div id="exampleAccordionA" data-children=".item">
+  <div class="item">
+    <a data-toggle="collapse" data-parent="#exampleAccordionA" href="#exampleAccordion1" aria-expanded="true" aria-controls="exampleAccordion1" class="text-warning">
+      Share
+    </a>
+    <div id="exampleAccordion1" class="collapse" role="tabpanel">
+      <div class="myWrap">
+        <p>Shareable Link:</p>
+        <p><code>www.chalkorcheese.com/voter/<%=topic._id%></code></p>
+        <a href="whatsapp://send?text=www.chalkorcheese.com%2Fvoter%2F<%=topic._id%> Cast%20Your%20Vote" target="_blank"
+     style="color: #29a628;">Share on Whatsapp</a><br>
+  <a  href="https://facebook.com/sharer/sharer.php?u=www.chalkorcheese.com%2Fvoter%2F<%=topic._id%>" 
+    style="color: #3b5998;" target="_blank">
+    Share on Facebook
+  </a><br>
+  <a target="_blank" href="https://twitter.com/share?url=www.chalkorcheese.com%2Fvoter%2F<%=topic._id%>&text=Cast%20Your%20Vote!!" style="color: #00aced;">Tweet</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+ <br><br>
+
+  <div class="row">
+  	<%var v=" Votes",v2=" Votes";
+  	if(topic.vc1===1)
+		v=" Vote"
+	if(topic.vc2===1)
+		v2=" Vote"
+  	%>
+    <div class="col-sm-6" >
+     	<div style="padding: 0.25rem;
+    				border: 1px solid rgba(239, 239, 239, 0.15);;
+    				border-left-width: .25rem;
+    				border-radius: .25rem;
+    				border-left-color: #f0ad4e;">
+      <p class="display-4" ><%=topic.contender1.name%> </p>
+      <span class="display-3 badge badge-secondary" id="c1-badge"><%=topic.vc1+v%></span>
+      </div>
+      <div style="margin: 20px;
+                    width: 200px;
+                    height: 200px;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="40px" y="20px" viewBox="0 0 100 100">
+                 <path fill-opacity="0" stroke-width="1" stroke="#bbb" d="M81.495,13.923c-11.368-5.261-26.234-0.311-31.489,11.032C44.74,13.612,29.879,8.657,18.511,13.923  C6.402,19.539,0.613,33.883,10.175,50.804c6.792,12.04,18.826,21.111,39.831,37.379c20.993-16.268,33.033-25.344,39.819-37.379  C99.387,33.883,93.598,19.539,81.495,13.923z"/>
+                  <path class="heart-path" fill-opacity="0" stroke-width="3" stroke="#ED6A5A" 
+                  d="M81.495,13.923c-11.368-5.261-26.234-0.311-31.489,11.032C44.74,13.612,29.879,8.657,18.511,13.923  C6.402,19.539,0.613,33.883,10.175,50.804c6.792,12.04,18.826,21.111,39.831,37.379c20.993-16.268,33.033-25.344,39.819-37.379  C99.387,33.883,93.598,19.539,81.495,13.923z"/>
+                  <path id="" fill-opacity="0" stroke-width="10" stroke="#ED6A5A" stroke="#000" fill="#fff" d="m285.02277,118.69874c36.48812,-87.41627 179.44979,0 0,112.39235c-179.44979,-112.39235 -36.48812,-199.80861 0,-112.39235z"  
+                  />
+                  <text id="heart-path-1-text" x="20" y="50" font-family="Quantico', sans-serif" font-size="20" fill="rgba(255, 193, 7, 0.76)">
+                    <%=Math.floor(hp1*100/270)+(((hp1*100/270)-Math.floor(hp1*100/270)).toPrecision(2)).substring(1)%>%</text>
+              </svg>
+              </div>
+             
+    </div>
+    <br>
+    <div class="col-sm-6">
+      <div style="padding: 0.25rem;
+    				border: 1px solid rgba(239, 239, 239, 0.15);;
+    				border-left-width: .25rem;
+    				border-radius: .25rem;
+    				border-left-color: #f0ad4e;">
+      <p class="display-4" ><%=topic.contender2.name%> </p>
+      <span class="display-3 badge badge-secondary" id="c2-badge"><%=topic.vc2+v2%></span>
+      </div>
+      <div style="margin: 20px;
+                    width: 200px;
+                    height: 200px;">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="40px" y="20px" viewBox="0 0 100 100">
+                 <path fill-opacity="0" stroke-width="1" stroke="#bbb" d="M81.495,13.923c-11.368-5.261-26.234-0.311-31.489,11.032C44.74,13.612,29.879,8.657,18.511,13.923  C6.402,19.539,0.613,33.883,10.175,50.804c6.792,12.04,18.826,21.111,39.831,37.379c20.993-16.268,33.033-25.344,39.819-37.379  C99.387,33.883,93.598,19.539,81.495,13.923z"/>
+                  <path class="heart-path-2" fill-opacity="0" stroke-width="3" stroke="#ED6A5A" 
+                  d="M81.495,13.923c-11.368-5.261-26.234-0.311-31.489,11.032C44.74,13.612,29.879,8.657,18.511,13.923  C6.402,19.539,0.613,33.883,10.175,50.804c6.792,12.04,18.826,21.111,39.831,37.379c20.993-16.268,33.033-25.344,39.819-37.379  C99.387,33.883,93.598,19.539,81.495,13.923z"/>
+                  <path id="" fill-opacity="0" stroke-width="10" stroke="#ED6A5A" stroke="#000" fill="#fff" d="m285.02277,118.69874c36.48812,-87.41627 179.44979,0 0,112.39235c-179.44979,-112.39235 -36.48812,-199.80861 0,-112.39235z"  
+                  />
+                  <text id="heart-path-2-text" x="20" y="50" font-family="Quantico', sans-serif" font-size="20" fill="rgba(255, 193, 7, 0.56)"><%=
+                 Math.floor(hp2*100/270)+(((hp2*100/270)-Math.floor(hp2*100/270)).toPrecision(2)).substring(1)%>%</text>
+              </svg>
+              </div>
+    </div>
+  </div>
+
+
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+var x1=270,x2=270;
+var max1=document.getElementById("hp1").value;
+//console.log(max1)
+var max2=document.getElementById("hp2").value
+//console.log(max2)
+
+setInterval(function(){
+	var heart1 = document.getElementsByClassName("heart-path");
+	 var heart2 = document.getElementsByClassName("heart-path-2");
+
+	if(x1>=max1){
+		x1-=1;
+    heart1[0].style.strokeDashoffset = x1;
+  //console.log(x1)
+}
+if(x2>=max2){
+    x2-=1;
+    heart2[0].style.strokeDashoffset = x2;
+    //console.log(x2)
+  }
+},5)
+	
+setInterval(function(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	var topic=JSON.parse(this.responseText)
+      //document.getElementById("demo").innerHTML = topic;
+      //console.log(topic)
+
+      var heart1 = document.getElementsByClassName("heart-path");
+	 var heart2 = document.getElementsByClassName("heart-path-2");	
+	 var h1ratio,h1,h1new,h2ratio,h2,h2new;
+	if(topic.vc1===0&&topic.vc2===0)
+	{
+		h1ratio=270;
+		h1new=0;
+		h2ratio=270;
+		h2new=0;
+	}
+	else{
+	h1ratio=270-(topic.vc1/(topic.vc1+topic.vc2)*270);
+	h1=topic.vc1/(topic.vc1+topic.vc2)*100;
+	h1new=Math.floor(h1)+((h1-Math.floor(h1)).toPrecision(2)).substring(1)
+	
+	h2ratio=270-(topic.vc2/(topic.vc1+topic.vc2)*270);
+	h2=topic.vc2/(topic.vc1+topic.vc2)*100;
+	h2new=Math.floor(h2)+((h2-Math.floor(h2)).toPrecision(2)).substring(1)
+	}
+	heart1[0].style.strokeDashoffset = h1ratio;
+	heart2[0].style.strokeDashoffset = h2ratio;
+  console.log(h1new+"%")
+  console.log(h2new+"%")
+	document.getElementById("heart-path-1-text").innerHTML=h1new+"%"
+	document.getElementById("heart-path-2-text").innerHTML=h2new+"%"
+	var v=" Votes",v2=" Votes";
+	if(topic.vc1===1)
+		v=" Vote"
+	if(topic.vc2===1)
+		v2=" Vote"
+	document.getElementById("c1-badge").innerHTML=topic.vc1+v
+	document.getElementById("c2-badge").innerHTML=topic.vc2+v2
+    }
+  };
+  xhttp.open("GET", "/topic/"+document.getElementById("topic").value, true);
+  xhttp.send();
+},60000)
+</script>
+
+
+</body>
+</html>
